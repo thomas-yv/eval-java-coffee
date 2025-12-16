@@ -102,8 +102,21 @@ public class CoffeeMachine {
             maxStockCount,
             unit
         );
-        consumables.add(consumable);
-        return consumable;
+
+        Consumable foundConsumable = getConsumable(name);
+        if (foundConsumable != null) {
+            int index = consumables.indexOf(foundConsumable);
+            consumables.set(index, consumable);
+            return consumable;
+        } else {
+            consumables.add(consumable);
+            return consumable;
+        }
+    }
+
+    public boolean resetConsumables() {
+        consumables.clear();
+        return true;
     }
 
     public Consumable getConsumable(String name) {
